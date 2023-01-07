@@ -1,6 +1,7 @@
 package me.whiteship.springbootmongo;
 
 import me.whiteship.springbootmongo.account.Account;
+import me.whiteship.springbootmongo.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 public class SpringbootmongoApplication {
 
 	@Autowired
-	MongoTemplate mongoTemplate;
+	AccountRepository accountRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootmongoApplication.class, args);
@@ -22,11 +23,9 @@ public class SpringbootmongoApplication {
 	public ApplicationRunner applicationRunner() {
 		return args -> {
 			Account account = new Account();
-			account.setEmail("aaa@bbb");
-			account.setUsername("aaa");
-			account.setUsername("aaa");
-
-			mongoTemplate.save(account);
+			account.setEmail("whiteship@email.com");
+			account.setUsername("whiteship");
+			accountRepository.save(account);
 
 			System.out.println("finished");
 		};
